@@ -52,6 +52,12 @@
             # hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
             # which in my case corresponds to this package:
             linuxKernel.packages.linux_6_6.nvidia_x11_beta
+
+            # To use opencv-python, instead of opencv-python-headless uncomment these lines:
+            # libglvnd
+            # glib
+            # xorg.libSM
+            # xorg.libICE
           ];
 
           LD_LIBRARY_PATH = lib.makeLibraryPath buildInputs;
