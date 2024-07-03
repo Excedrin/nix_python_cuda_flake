@@ -4,4 +4,7 @@ Pillow
 torchvision
 tiktoken
 accelerate
-https://github.com/Dao-AILab/flash-attention/releases/download/v2.5.8/flash_attn-2.5.8+cu122torch2.3cxx11abiFALSE-cp311-cp311-linux_x86_64.whl
+numpy<2
+flash-attn @ https://github.com/Dao-AILab/flash-attention/releases/download/v2.5.8/flash_attn-2.5.8+cu122torch2.3cxx11abiFALSE-cp311-cp311-linux_x86_64.whl#sha256=0b28549d7a7105dfa9300751de038f1e607fe11bb96ac2bdd29b474926ca8e41
+opencv-contrib-python @ https://github.com/cudawarped/opencv-python-cuda-wheels/releases/download/4.9.0.80/opencv_contrib_python-4.9.0.80-cp37-abi3-linux_x86_64.whl#sha256=423437dc10bf9e60baa7340b083db21ec44de4fb82ebcd07ba9b2a40022edcce
+opencv-python-headless==4.9.0.80

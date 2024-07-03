@@ -8,9 +8,6 @@
     # nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
 
     utils.url = "github:numtide/flake-utils";
-
-    # nix-ld.url = "github:Mic92/nix-ld";
-    # nix-ld.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
@@ -44,10 +41,12 @@
             stdenv.cc.cc
             zlib
 
-            # Apparently none of these are needed because of nvidia_x11 inclusion
-            # cudaPackages.cudatoolkit
-            # cudaPackages.cudnn
-            # cudaPackages.libcublas
+            # Adding these for opencv, pytorch apparently does not depend on them
+            cudaPackages.cudnn
+            cudaPackages.cutensor
+            cudaPackages.libnpp
+            cudaPackages.libcublas
+            cudaPackages.libcufft
 
             # In my /etc/nixos/configuration.nix I use this setting:
             # hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
@@ -56,17 +55,6 @@
           ];
 
           LD_LIBRARY_PATH = lib.makeLibraryPath buildInputs;
-
-          # These are not needed
-          # Requires impure flake
-          # NIX_LD = lib.fileContents "${stdenv.cc}/nix-support/dynamic-linker";
-          # Does not require impure flake
-          # NIX_LD = "${stdenv.cc.libc_bin}/bin/ld.so";
-
-          # Not needed
-          # export CUDA_PATH=${cudatoolkit}
-          # export CUDNN_PATH=${cudaPackages.cudnn}
-          # export LD_LIBRARY_PATH=$NIX_LD_LIBRARY_PATH
 
           postShellHook = ''
             export LD_LIBRARY_PATH=$LD_LIBRARY_PATH
